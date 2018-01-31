@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+       <property name="jndiName" value="jdbc/NMSLocalTxDataSource"/>
+       <!-- <property name="jndiEnvironment">
+            <props>
+                <prop key="java.naming.factory.initial">weblogic.jndi.WLInitialContextFactory</prop>
+                <prop key="java.naming.provider.url">t3://10.10.134.202:8811</prop>
+            </props>
+       </property>-->
+	</bean>
+	<bean id="notificationHistoryDAO" class="com.techm.nms.sql.dao.NotificationHistoryDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="customerPrefDAO" class="com.techm.nms.sql.dao.CustomerPrefDAO">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+</beans>
